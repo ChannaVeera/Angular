@@ -37,6 +37,7 @@ export class SetPasswordComponent implements OnInit {
   if(this.cpassword.value===this.password.value){
     console.log("cpassword and pass same===============>");
     this.token=localStorage.getItem("token")
+    console.log("")
     this.httpservice.putRequest("restPassword",this.setpassword).subscribe(
 
       (response:any)=>{
@@ -72,14 +73,15 @@ export class SetPasswordComponent implements OnInit {
   
   else{
     console.log("cpassword and pass same45as6+43213===============>");
-    
-        this.snackBar.open(
-          "Reset Failed password not matching",
-          "undo",
-          { duration: 2500 }
+    this.snackBar.open(
+      "mismatching passwords",
+      "undo")
+  }
 
-  }
-  }
+
+ 
+} 
+}
 
   
 

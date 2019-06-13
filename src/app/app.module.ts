@@ -15,6 +15,18 @@ import { ForgotpasswordComponent } from './component/forgotpassword/forgotpasswo
 import { SetPasswordComponent } from './component/set-password/set-password.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { HttpService } from './service/http-service';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import{FundooMaterialModule} from 'src/app/material.module'
+import { from } from 'rxjs';
+import { NoteComponent } from './component/note/note.component';
+import { IconComponent } from './icon/icon.component';
+import { NoteComComponent } from './component/note-com/note-com.component';
+import { NoteupdateComponent } from './component/noteupdate/noteupdate.component';
+import { EditlableComponent } from './component/editlable/editlable.component';
 
 
 
@@ -25,6 +37,13 @@ import { HttpService } from './service/http-service';
     RegisterComponent,
     ForgotpasswordComponent,
     SetPasswordComponent,
+    DashboardComponent,
+    NoteComponent,
+    IconComponent,
+    NoteComComponent,
+    NoteupdateComponent,
+    EditlableComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -38,10 +57,20 @@ import { HttpService } from './service/http-service';
     MatCardModule,
     MatButtonModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatMenuModule,
+    FlexLayoutModule,
+    FundooMaterialModule,
+        
 
   ],
   providers: [HttpService],
+  entryComponents:[
+    NoteupdateComponent,
+    EditlableComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

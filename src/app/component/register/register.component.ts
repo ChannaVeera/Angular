@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
   name = new FormControl(this.user.name, [Validators.required, Validators.minLength(8)]);
   email=new FormControl(this.user.emailId, [Validators.required]);
   password=new FormControl(this.user.password, [Validators.required, Validators.minLength(6)]);
+  cpassword= new FormControl(this.user.password, [Validators.required, Validators.minLength(6)]);
   mobile=new FormControl(this.user.phoneNumber,[Validators.required, Validators.minLength(10),Validators.maxLength(10)]);
 
   constructor(private snackBar: MatSnackBar,private httpservice:HttpService,
@@ -41,6 +42,7 @@ export class RegisterComponent implements OnInit {
         '';
   }
      onRegister() {
+       if(this.cpassword===this.password){
        console.log("eeeeeeeeeeee",this.user
        );
        console.log("ok in console");
@@ -66,5 +68,15 @@ export class RegisterComponent implements OnInit {
         }
       )
     }
+    else{
+      this.snackBar.open(
+        "Password miss Match",
+        "undo",
+        { duration: 2500 }
+      )
+
+    }
+  }
+  
     
 }

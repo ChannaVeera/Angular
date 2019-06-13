@@ -17,6 +17,7 @@ export class HttpService {
         public putRequest(url :any, data: any ):any{
           console.log('url',url);
           
+          
           return this.http.put(this.baseurl + url,data,{ headers: new HttpHeaders().set('token', localStorage.getItem('token')) });
         }
         public deleteRequest(url :any):any{

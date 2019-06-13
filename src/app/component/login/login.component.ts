@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
            
             { duration: 2500 }
         )
-          this.router.navigate(['/dashboard'])
+           this.router.navigate(['/dashboard'])
 
        }else {
         console.log(response);

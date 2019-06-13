@@ -1,0 +1,122 @@
+<div fxLayout="row" fxLayoutAlign="start center">
+
+  <mat-toolbar>
+    <div>
+      <button mat-icon-button (click)="sidenav.toggle()" fxShow="true">
+        <mat-icon matTooltip="Main menu">menu</mat-icon>
+      </button>
+    </div>
+    <div>
+      <img style="margin-left: 10px; padding-top: 21%" src="../../../assets/keep_48dp.png">
+    </div>
+    <div>
+      <h2 style="padding-top: 6%; margin-left: 25px">Fundoo</h2>
+    </div>
+    <div fxFlex="60" fxLayout="row" fxLayout.xs="row" fxLayoutAlign="center center">
+      <mat-form-field appearance="outline" fxHide.xs [style.fontSize.px]="2" class="search" style=" width: 588px;">
+        <button mat-icon-button class="search-button">
+          <mat-icon matTooltip="Search">search</mat-icon>
+        </button>
+        <input fxFlex="100" matInput placeholder="Search" [style.fontSize.px]="16"
+          (input)="onSearchChange($event.target.value)" class="search-window" autocomplete="off" />
+      </mat-form-field>
+      <button mat-icon-button class="search-button" style="margin-left: -40px">
+        <mat-icon matTooltip="close ">close</mat-icon>
+      </button>
+    </div>
+    <div>
+      <button style=" margin-left: 0px" class="refresh" mat-icon-button>
+        <mat-icon matTooltip="refresh">refresh</mat-icon>
+      </button>
+    </div>
+    <div>
+      <button style="margin-left: 10px ;padding-top: 3%" class="view" mat-icon-button>
+        <mat-icon matTooltip="Grid view">view_agenda
+        </mat-icon>
+      </button>
+    </div>
+    <div>
+      <div style="margin-right: 10px" class="setting" mat-icon-button>
+        <button matTooltip="menu" mat-button [matMenuTriggerFor]="menu " style="margin-left: 10px ;padding-top: 3%"
+          class="view" mat-icon-button>
+          <mat-icon matTooltip="settings">settings</mat-icon>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Item 1</button>
+            <button mat-menu-item>Item 2</button>
+          </mat-menu>
+        </button>
+      </div>
+    </div>
+    <div>
+      <button mat-button [matMenuTriggerFor]="menu " style="margin-left: 10px ;padding-top: 3%" class="view"
+        mat-icon-button>
+        <mat-icon matTooltip="appearance" matTooltip="apps">apps</mat-icon>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+      </button>
+    </div>
+    <div>
+      <button mat-button [matMenuTriggerFor]="menu " style="margin-left: 10px ;padding-top: 3%" class="perm_identity"
+        mat-icon-button>
+        <mat-icon matTooltip="perm_identity">perm_identity</mat-icon>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+      </button>
+    </div>
+  </mat-toolbar>
+
+</div>
+<mat-sidenav-container fxFlexFill class="sidenavbar">
+  <mat-sidenav  #sidenav mode='side'>
+    <mat-nav-list fxLayout="column">
+      <div class="notes" fxFlex="100" fxLayout="row">
+        <button class="sidenav" mat-button [routerLink]="['note']">
+          <mat-icon matTooltip="Create Notes">lightbulb_outline</mat-icon> Notes
+        </button>
+      </div>
+
+      <div class="reminder" fxFlex="100" fxLayout="row">
+        <button class="sidenavre" mat-button [routerLink]="['remainder']">
+          <mat-icon matTooltip="Create Reminder">notifications_none</mat-icon> Remainder
+        </button>
+      </div>
+
+      <hr>
+
+      <div style="padding-left:15%;">
+        <h5>LABELS</h5>
+      </div>
+      <div  class="notes" fxFlex="100" fxLayout="row">
+        <div *ngFor="let items of allLabels" fxLayout="row">
+          <button mat-button>label
+            <mat-icon style="height: 20px;width: 20px;">label</mat-icon>
+          </button>
+          <div>{{ items.labelName }}</div>
+        </div>
+        <button class="sidenav" mat-button (click)=openDialogLabel()>
+          <mat-icon>edit</mat-icon> Edit Labels
+        </button>
+      </div>
+      <hr>
+      <div  class="notes" fxFlex="100" fxLayout="row">
+        <button class="sidenav" mat-button [routerLink]="['archive']">
+          <mat-icon>archive</mat-icon> Archive
+        </button>
+      </div>
+      <div class="notes" fxFlex="100" fxLayout="row">
+        <button class="sidenav" mat-button [routerLink]="['trash']">
+          <mat-icon>delete</mat-icon> Trash
+        </button>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class=content fxFlexFill>
+    <router-outlet></router-outlet>
+    <app-note></app-note>
+    <app-note-com></app-note-com>
+  </mat-sidenav-content>
+</mat-sidenav-container>
