@@ -1,10 +1,10 @@
 <div fxLayout="row" fxFlex="100" >
-    <div fxLayout="row" fxLayout="row wrap" fxFlex="80" fxLayoutGap=20px>
+    <div fxLayout="row" fxLayout="row wrap" fxFlex="90" fxLayoutGap=30px>
 <div  *ngFor="let note of notes">
-    <mat-card class="matcard2" (click)="onUpdate(notes   )" >
-            <form>
+    <mat-card class="matcard2">
+            <form >
 
-        <div class="notearea" >
+        <div class="notearea"  (click)="onUpdate(note)">
         <div>
            {{note.title}}            
         </div> 
@@ -16,11 +16,8 @@
             </div>
 
             <div class=appicons>
-               <app-icon></app-icon>
+               <app-icon [noteInfo]=note></app-icon>
                 </div>
     </form>
     </mat-card>
-
-    </div>
-    </div>
     </div>

@@ -16,10 +16,10 @@ export class RegisterComponent implements OnInit {
 
   user: User = new User();
 
-  name = new FormControl(this.user.name, [Validators.required, Validators.minLength(8)]);
+  name = new FormControl(this.user.name, [Validators.required, Validators.minLength(8), Validators.pattern('[a-zA-Z ]*')]);
   email=new FormControl(this.user.emailId, [Validators.required]);
-  password=new FormControl(this.user.password, [Validators.required, Validators.minLength(6)]);
-  cpassword= new FormControl(this.user.password, [Validators.required, Validators.minLength(6)]);
+  password = new FormControl(this.user.password, [Validators.required, Validators.minLength(8), Validators.maxLength(15)])
+  cpassword= new  FormControl('',[Validators.required,Validators.minLength(8),Validators.maxLength(15)])
   mobile=new FormControl(this.user.phoneNumber,[Validators.required, Validators.minLength(10),Validators.maxLength(10)]);
 
   constructor(private snackBar: MatSnackBar,private httpservice:HttpService,
@@ -41,8 +41,19 @@ export class RegisterComponent implements OnInit {
       this.email.hasError('email') ? 'Not a valid email' :
         '';
   }
+  getErrorPassword(){
+    return this.password.hasError('required') ? 'You must enter a value':
+    this.password.hasError('password') ? 'Min 6 Elements':'';
+  }
+  getErrorcPassword(){
+    return this.password.hasError('required') ? 'You must enter a value':
+    this.password.hasError('password') ? 'Min 6 Elements':'';
+  }
      onRegister() {
-       if(this.cpassword===this.password){
+       console.log(this.user)
+       console.log(this.cpassword)
+       console.log(this.password)
+       if(this.cpassword.value===this.password.value){
        console.log("eeeeeeeeeeee",this.user
        );
        console.log("ok in console");

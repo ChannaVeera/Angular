@@ -10,7 +10,7 @@
       <img style="margin-left: 10px; padding-top: 21%" src="../../../assets/keep_48dp.png">
     </div>
     <div>
-      <h2 style="padding-top: 6%; margin-left: 25px">Fundoo</h2>
+      <h2 style="padding-top: 6%; margin-left: 25px">{{appName}}</h2>
     </div>
     <div fxFlex="60" fxLayout="row" fxLayout.xs="row" fxLayoutAlign="center center">
       <mat-form-field appearance="outline" fxHide.xs [style.fontSize.px]="2" class="search" style=" width: 588px;">
@@ -74,7 +74,7 @@
   <mat-sidenav  #sidenav mode='side'>
     <mat-nav-list fxLayout="column">
       <div class="notes" fxFlex="100" fxLayout="row">
-        <button class="sidenav" mat-button [routerLink]="['note']">
+        <button class="sidenav" mat-button (click)="onnote()">
           <mat-icon matTooltip="Create Notes">lightbulb_outline</mat-icon> Notes
         </button>
       </div>
@@ -90,12 +90,17 @@
       <div style="padding-left:15%;">
         <h5>LABELS</h5>
       </div>
-      <div  class="notes" fxFlex="100" fxLayout="row">
-        <div *ngFor="let items of allLabels" fxLayout="row">
-          <button mat-button>label
-            <mat-icon style="height: 20px;width: 20px;">label</mat-icon>
+      <div fxFlex="100" fxLayout="column">
+        
+        <div  *ngFor="let data of labelsDisplay">
+          <button class="showlabel" mat-button>
+        
+            <mat-icon matPrefix>labels</mat-icon>
+
+            {{data.lableName}}
+            <br>
+    
           </button>
-          <div>{{ items.labelName }}</div>
         </div>
         <button class="sidenav" mat-button (click)=openDialogLabel()>
           <mat-icon>edit</mat-icon> Edit Labels
@@ -114,7 +119,7 @@
       </div>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content class=content fxFlexFill>
+  <mat-sidenav-content class=content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       >
     <router-outlet></router-outlet>
     <app-note></app-note>
     <app-note-com></app-note-com>

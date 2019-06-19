@@ -37,7 +37,6 @@ export class ForgotpasswordComponent implements OnInit {
           console.log(response);
           this.snackBar.open(
             "Link sent", "undo",
-
             { duration: 2500 }
           )
         } else {

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 import { NoteupdateComponent } from '../noteupdate/noteupdate.component';
 import { EditlableComponent } from '../editlable/editlable.component';
+import { Labelservice } from 'src/app/service/labelservice';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,23 +14,54 @@ import { EditlableComponent } from '../editlable/editlable.component';
 })
 export class DashboardComponent implements OnInit {
   showFiller = false;
-  constructor(private snackbar:MatSnackBar,private noteService: Noteservice,
-    private route:ActivatedRoute,private router:Router,private formBuilder:FormBuilder,
+  constructor(private snackbar: MatSnackBar, private labelService: Labelservice,
+    private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder,
     public dialog: MatDialog) { }
-lable:[]
+  appName: string;
+  lables: []
   ngOnInit() {
+    this.appName = "FundooNote";
+
+    this.getalllabels() ;
   }
-  openDialogLabel(notes:any){
+
+  openDialogLabel(notes: any) {
     console.log("yesz")
-    console.log("note",this.lable);
-    console.log(this.lable)
-      const dialogRef = this.dialog.open(EditlableComponent, {
-        
-     height:'300px',
-     width:'300px',
-       
-      });
-    }
+    console.log("note", this.lables);
+    console.log(this.lables)
+    const dialogRef = this.dialog.open(EditlableComponent, {
+
+      height: '650px',
+      width: '450px',
+
+    });
   }
+  // openDialogLabel(){
+  //   this.labelService.getRequest("getAll").subscribe(
+  //     (Response:any)=>{
+
+  //       this.lables=Response;
+  //       console.log(this.lables)
+  //     }
+
+
+  //   )
+  // }
+  onnote() {
+    this.appName = "note"
+  }
+
+  labelsDisplay = [];
+  getalllabels() {
+    this.labelService.getRequest("getAll").subscribe(
+      (Response: any) => {
+        this.labelsDisplay = Response;
+        console.log('labelsDisplay dashboard ===================>',this.labelsDisplay)
+      }
+
+    )
+  }
+
+}
   // showFiller = false;
 

@@ -5,11 +5,12 @@ import{RegisterComponent}from './component/register/register.component'
 import{ForgotpasswordComponent}from './component/forgotpassword/forgotpassword.component'
 import{SetPasswordComponent} from './component/set-password/set-password.component'
 import{DashboardComponent } from './component/dashboard/dashboard.component'
+import {LableComponentComponent  } from './component/lable-component/lable-component.component';
 import { from } from 'rxjs';
 
 const routes: Routes = [
   {
-    path: ' ',
+    path: '',
     redirectTo: 'login',
     pathMatch: 'full'
   },
@@ -34,6 +35,10 @@ const routes: Routes = [
   {
     path:"dashboard",
     component:DashboardComponent
+  },
+  {
+    path:"allLabels",
+    component:LableComponentComponent
   }
 ];
 

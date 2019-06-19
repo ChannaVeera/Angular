@@ -23,10 +23,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import{FundooMaterialModule} from 'src/app/material.module'
 import { from } from 'rxjs';
 import { NoteComponent } from './component/note/note.component';
-import { IconComponent } from './icon/icon.component';
+import { IconComponent} from './component/icon/icon.component';
 import { NoteComComponent } from './component/note-com/note-com.component';
 import { NoteupdateComponent } from './component/noteupdate/noteupdate.component';
 import { EditlableComponent } from './component/editlable/editlable.component';
+import { LableComponentComponent } from './component/lable-component/lable-component.component';
+import {GetLabelcomponentComponent  } from "./component/get-labelcomponent/get-labelcomponent.component";
+
 
 
 
@@ -42,7 +45,10 @@ import { EditlableComponent } from './component/editlable/editlable.component';
     IconComponent,
     NoteComComponent,
     NoteupdateComponent,
-    EditlableComponent
+    EditlableComponent,
+    LableComponentComponent,
+    GetLabelcomponentComponent
+   
     
   ],
   imports: [
@@ -69,7 +75,8 @@ import { EditlableComponent } from './component/editlable/editlable.component';
   providers: [HttpService],
   entryComponents:[
     NoteupdateComponent,
-    EditlableComponent
+    EditlableComponent,
+
   ],
   bootstrap: [AppComponent]
 })

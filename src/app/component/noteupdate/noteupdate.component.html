@@ -6,12 +6,12 @@
       <div data-text="Take a Note" class="textarea1">
 
 
-        <input matInput placeholder="Edit Title" [formControl]="title">
+        <input matInput placeholder="Edit Title" [formControl]="title"[(ngModel)]="note.title" >
 
       </div>
       <br>
       <div data-text="Take a Note" contenteditable="true" class="textarea1">
-        <input matInput placeholder="Edit Description" [formControl]="description">
+        <input matInput placeholder="Edit Description" [formControl]="description"  [(ngModel)]="note.description" >
       </div>
       <br>
       <div>
@@ -27,14 +27,3 @@
   </div>
 </div>
 
-<!-- <h1 mat-dialog-title>Hi ABC</h1>
-<div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field>
-    <input matInput>
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="" cdkFocusInitial>Ok</button>
-</div> -->
