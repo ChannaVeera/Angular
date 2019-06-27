@@ -6,7 +6,10 @@ import{ForgotpasswordComponent}from './component/forgotpassword/forgotpassword.c
 import{SetPasswordComponent} from './component/set-password/set-password.component'
 import{DashboardComponent } from './component/dashboard/dashboard.component'
 import {LableComponentComponent  } from './component/lable-component/lable-component.component';
+import { ArchiveComponent } from  './component/archive/archive.component';
+import { TrachComponent } from './component/trach/trach.component';
 import { from } from 'rxjs';
+import { NoteComponent } from './component/note/note.component';
 
 const routes: Routes = [
   {
@@ -24,6 +27,7 @@ const routes: Routes = [
     path:'register',
     component:RegisterComponent
   },
+ 
   {
     path :"forgotPassword",
     component:ForgotpasswordComponent
@@ -34,12 +38,27 @@ const routes: Routes = [
   },
   {
     path:"dashboard",
-    component:DashboardComponent
+    component:DashboardComponent,children:[
+      {
+        path:'',
+        component:NoteComponent
+      },
+      {
+        path:"trash",
+        component:TrachComponent
+      },
+      {
+        path:"archive",
+        component:ArchiveComponent
+      },
+    ]
   },
   {
     path:"allLabels",
     component:LableComponentComponent
-  }
+  },
+ 
+  
 ];
 
 @NgModule({

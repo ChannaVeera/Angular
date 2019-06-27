@@ -29,6 +29,11 @@ import { NoteupdateComponent } from './component/noteupdate/noteupdate.component
 import { EditlableComponent } from './component/editlable/editlable.component';
 import { LableComponentComponent } from './component/lable-component/lable-component.component';
 import {GetLabelcomponentComponent  } from "./component/get-labelcomponent/get-labelcomponent.component";
+import { ArchiveComponent } from './component/archive/archive.component';
+import { TrachComponent } from './component/trach/trach.component';
+import { TrachiconComponent } from './component/trachicon/trachicon.component';
+import { LabelNoteComponent } from './component/label-note/label-note.component';
+
 
 
 
@@ -47,7 +52,11 @@ import {GetLabelcomponentComponent  } from "./component/get-labelcomponent/get-l
     NoteupdateComponent,
     EditlableComponent,
     LableComponentComponent,
-    GetLabelcomponentComponent
+    GetLabelcomponentComponent,
+    ArchiveComponent,
+    TrachComponent,
+    TrachiconComponent,
+    LabelNoteComponent
    
     
   ],

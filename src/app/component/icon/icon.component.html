@@ -8,9 +8,18 @@
     <mat-icon class=color> person_add</mat-icon>
   </button>
 
-  <button class=trash mat-icon-button (click)="colorlens()">
-    <mat-icon class=color> color_lens</mat-icon>
+  <button  mat-icon-button (click)="colorlens()" [matMenuTriggerFor]="menu1" >
+    <mat-icon class=color> color_lens</mat-icon>  
   </button>
+  
+  <mat-menu #menu1="matMenu">
+      <div *ngFor="let colors of  arrayColor" fxLayout="row">
+        <div *ngFor="let color of colors" >
+
+      <button [ngStyle]="{'background-color':color.hexcode}" mat-mini-fab (click)=setColor(color.name)></button>
+    </div>
+    </div>
+    </mat-menu>
 
   <button class=trash mat-icon-button (click)="insertphoto()">
     <mat-icon class=color> insert_photo</mat-icon>
@@ -38,8 +47,8 @@
 </div>
 
 <mat-menu #subMenu="matMenu">
-  <div fxLayoutGap="20px" fxLayout="column">
-    <mat-checkbox *ngFor="let labels of label">
+  <div   *ngFor="let labels of label" fxLayoutGap="20px" fxLayout="column">
+    <mat-checkbox (click)="addlabel(labels)">
       {{labels.lableName}}
     </mat-checkbox>
   </div>

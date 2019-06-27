@@ -1,0 +1,17 @@
+<div class=icons  fxLayout=layout-wrap>
+    <button mat-icon-button (click)="morevert()" [matMenuTriggerFor] ="menu1"> 
+        <mat-icon class=color> more_vert</mat-icon>  
+      </button>
+    </div>
+ 
+     <mat-menu #menu1="matMenu">
+             
+        <!-- <button mat-menu-item>Item 1</button> -->
+        <div class=button > 
+            <button mat-icon-button color="primary" (click)="onRestore()">Restore note</button>
+          </div>
+          <div class=button>
+            <button mat-icon-button color="primary" (click)="onDelete()">Delete forever</button>
+          </div>
+     
+      </mat-menu>

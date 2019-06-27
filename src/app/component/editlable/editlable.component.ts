@@ -14,11 +14,13 @@ import { Label } from 'src/app/models/label';
 export class EditlableComponent implements OnInit {
   label:Label = new Label();
   labels:any[];
+  message:string;
   lableName =new FormControl(this.label.lableName);
   constructor( private snackbar:MatSnackBar,private labelservice:Labelservice,private route:ActivatedRoute,private router:Router,
-    private formBuilder:FormBuilder, private dataservice:DataService ) { }
+    private formBuilder:FormBuilder,   private dataService:DataService, ) { }
 
   ngOnInit() {
+    
   }
   onClose(){
   console.log(this.label);
@@ -31,7 +33,7 @@ export class EditlableComponent implements OnInit {
       (Response:any)=>{
         
         if(Response.statusCode===200){
-          this.dataservice.changeMessage("lable")
+          this.dataService.changeMessage("lable")
           console.log(Response);
           this.snackbar.open(
             "Lable Creation Successfull","undo",

@@ -20,11 +20,13 @@ export class GetLabelcomponentComponent implements OnInit {
 
  
   ngOnInit() {
-
-    this.getalllabels();
+    this.dataservice.currentMessage.subscribe(
+      message=>{;this.message=message,this. getallabels()   
+      }
+    )
    
   }
-  getalllabels(){
+  getallabels(){
     this.labelservice.getRequest("getAll").subscribe(
           (Response:any)=>{
             
@@ -35,22 +37,23 @@ export class GetLabelcomponentComponent implements OnInit {
     )
   }
   update(label:any){
-    console.log("update")
-    console.log(label)
-    this.labelservice.putRequest("update?noteId="+label.labelId,label).subscribe(
+  
+    console.log(label
+       )
+    this.labelservice.putRequest("update?lableId="+label.la,label).subscribe(
       (Response:any)=>{
         if(Response.statusCode===200){
           this.dataservice.changeMessage("Update labels")
           console.log(Response)
 
           this.snackbar.open(
-            "Label Update","",
+            "Label Updates Successfull","undo",
             {duration:2500}
           )
         }
         else{
           this.snackbar.open(
-            "Label Update UnSuccessfull","",
+            "Label Update UnSuccessfull","undo",
             {duration:2500}
           )
         }
@@ -58,6 +61,29 @@ export class GetLabelcomponentComponent implements OnInit {
       
     )
 
+  }
+  delete(label){
+    this.labelservice.deleteRequest("delete?labelId="+label.labelId).subscribe(
+      (Response:any)=>{
+        if(Response.statusCode===200){
+          this.dataservice.changeMessage("Delet labels")
+          console.log(Response)
+
+          this.snackbar.open(
+            "Label Delete successfull","undo",
+            {duration:2500}
+          )
+        }
+        else{
+          this.snackbar.open(
+            "Label Delete Unsuccessfull","undo",
+            {duration:2500}
+          )
+        }
+      }
+      
+
+    )
   }
   
 }

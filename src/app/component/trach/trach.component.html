@@ -1,0 +1,25 @@
+<div fxLayout="row" fxFlex="100">
+   <div fxLayout="row" fxLayout="row wrap" fxFlex="70" fxLayoutGap=30px>
+      <div *ngFor="let note of notes">
+         <div *ngIf="note.trash==true">
+         <mat-card   [ngStyle]="{'background-color':note.color}"  class="matcard2">
+            <form>
+               <div class="notearea" (click)="onUpdate(note)">
+                  <div>
+                     {{note.title}}
+                  </div>
+                  <br>
+
+                  <div>
+                     {{note.description}}
+                  </div>
+            </div>
+
+               <div class=appicons>
+                  <app-trachicon [noteInfo]=note></app-trachicon>
+               </div>
+            </form>
+         </mat-card>
+         </div>
+      </div>
+   </div>
