@@ -10,6 +10,8 @@ import { ArchiveComponent } from  './component/archive/archive.component';
 import { TrachComponent } from './component/trach/trach.component';
 import { from } from 'rxjs';
 import { NoteComponent } from './component/note/note.component';
+import { PinComponent } from './component/pin/pin.component';
+import { PincompComponent } from './component/pincomp/pincomp.component';
 
 const routes: Routes = [
   {
@@ -57,6 +59,10 @@ const routes: Routes = [
     path:"allLabels",
     component:LableComponentComponent
   },
+  {
+    path:"pin",
+    component:  PincompComponent
+  }
  
   
 ];

@@ -6,35 +6,46 @@
         <mat-icon matTooltip="Main menu">menu</mat-icon>
       </button>
     </div>
+
     <div>
       <img style="margin-left: 10px; padding-top: 21%" src="../../../assets/keep_48dp.png">
     </div>
+
     <div>
       <h2 style="padding-top: 6%; margin-left: 25px">{{appName}}</h2>
     </div>
+
     <div fxFlex="60" fxLayout="row" fxLayout.xs="row" fxLayoutAlign="center center">
+
+
+
       <mat-form-field appearance="outline" fxHide.xs [style.fontSize.px]="2" class="search" style=" width: 588px;">
         <button mat-icon-button class="search-button">
-          <mat-icon matTooltip="Search" (click)="onsearch()">search</mat-icon>
+          <mat-icon matTooltip="Search" (input)="onsearch($event.target.value)">search</mat-icon>
         </button>
         <input [formControl]='search' fxFlex="100" matInput placeholder="Search" [style.fontSize.px]="16"
-           class="search-window" autocomplete="off" />
+          class="search-window" autocomplete="off" />
       </mat-form-field>
+
       <button mat-icon-button class="search-button" style="margin-left: -40px">
         <mat-icon matTooltip="close ">close</mat-icon>
       </button>
+
     </div>
+
     <div>
       <button style=" margin-left: 0px" class="refresh" mat-icon-button>
         <mat-icon matTooltip="refresh">refresh</mat-icon>
       </button>
     </div>
+
     <div>
       <button style="margin-left: 10px ;padding-top: 3%" class="view" mat-icon-button>
         <mat-icon matTooltip="Grid view">view_agenda
         </mat-icon>
       </button>
     </div>
+
     <div>
       <div style="margin-right: 10px" class="setting" mat-icon-button>
         <button matTooltip="menu" mat-button [matMenuTriggerFor]="menu " style="margin-left: 10px ;padding-top: 3%"
@@ -45,8 +56,11 @@
             <button mat-menu-item>Item 2</button>
           </mat-menu>
         </button>
+
       </div>
+
     </div>
+
     <div>
       <button mat-button [matMenuTriggerFor]="menu " style="margin-left: 10px ;padding-top: 3%" class="view"
         mat-icon-button>
@@ -58,30 +72,32 @@
         </mat-menu>
       </button>
     </div>
-   
+
     <div>
-     
-      <button  mat-button style="margin-left: 10px ;padding-top: 3%" class="perm_identity" mat-icon-button (click)="account()" fxShow="true" >
+      <button mat-button style="margin-left: 10px ;padding-top: 3%" class="perm_identity" mat-icon-button
+        (click)="account()" fxShow="true">
         <mat-icon> account_circle</mat-icon>
       </button>
     </div>
-  
 
   </mat-toolbar>
-<div>
+
   <div>
-    <mat-card class="mat1" *ngIf="open" >
-            <div  fxLayout="row" fxLayoutGap="120px">
-                   
-                    <button mat-icon-button color="primary" routerLink='/register' >Add Account</button>
-                  <button mat-icon-button color="primary"  routerLink='/login'> SignOut</button><br>
-                </div>
-    </mat-card>
- </div>
+    <div>
+      <mat-card class="mat1" *ngIf="open">
+        <div fxLayout="column" fxLayout="row" fxLayoutGap="120px">
+
+          <button mat-icon-button color="primary" routerLink='/register'>Add Account</button>
+          <button mat-icon-button color="primary" routerLink='/login'> SignOut</button><br>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+
 </div>
-</div>
+
 <mat-sidenav-container fxFlexFill class="sidenavbar">
-  <mat-sidenav  #sidenav mode='side'>
+  <mat-sidenav #sidenav mode='side' style="    width: 150px;">
     <mat-nav-list fxLayout="column">
       <div class="notes" fxFlex="100" fxLayout="row">
         <button class="sidenav" mat-button (click)="  onNotes()">
@@ -90,6 +106,7 @@
       </div>
 
       <div class="reminder" fxFlex="100" fxLayout="row">
+
         <button class="sidenavre" mat-button [routerLink]="['remainder']">
           <mat-icon matTooltip="Create Reminder">notifications_none</mat-icon> Reminder
         </button>
@@ -101,15 +118,15 @@
         <h5>LABELS</h5>
       </div>
       <div fxFlex="100" fxLayout="column">
-        
-        <div  *ngFor="let data of labelsDisplay">
+
+        <div *ngFor="let data of labelsDisplay">
           <button class="showlabel" mat-button>
-        
+
             <mat-icon matPrefix>label outline</mat-icon>
 
             {{data.lableName}}
             <br>
-    
+
           </button>
         </div>
         <button class="sidenav" mat-button (click)=openDialogLabel()>
@@ -117,21 +134,21 @@
         </button>
       </div>
       <hr>
-      <div  class="notes" fxFlex="100" fxLayout="row">
+      <div class="notes" fxFlex="100" fxLayout="row">
+
         <button class="sidenav" mat-button (click)="onArchive()">
           <mat-icon>archive</mat-icon> Archive
         </button>
       </div>
       <div class="notes" fxFlex="100" fxLayout="row">
+
         <button class="sidenav" mat-button (click)="  onTrash()">
           <mat-icon>delete</mat-icon> Trash
         </button>
       </div>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content class=content                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       >
-    
-   
-    <router-outlet></router-outlet> 
+  <mat-sidenav-content class=content>
+    <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -6,10 +6,17 @@
   
   .example-sidenav-content {
     display: flex;
-    height: 100%;
+    height: 100px;
    
   }
-  
+  .mat1{
+    width: 230px;
+ margin-right: 103px;
+    z-index: 10;
+    float: right;
+    margin-bottom: -72px;
+}
+
   .example-sidenav {
     padding: 20px;
     width: 300px;
@@ -18,15 +25,18 @@
  .notes .sidenav{
    width: 300px;
  }
- mat-sidenav{
-   width: 290px;
- }
- .sidenav mat-icon{
-   margin-left: -196px;
- }
- .sidenavre mat-icon{
-  margin-left: -167px;
- }
+//  mat-sidenav{
+//    width: 290px;
+//  }
+//  .sidenav mat-icon{
+//    margin-left: -196px;
+//  }
+//  .sidenavre mat-icon{
+//   margin-left: -167px;
+//  }
  .reminder .sidenavre{
    width: 300px;
+ }
+ .sidenavbar{
+   width: 400px
  }

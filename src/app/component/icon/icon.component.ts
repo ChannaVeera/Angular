@@ -146,7 +146,7 @@ export class IconComponent implements OnInit {
     this.labelservice.getRequest("getAll").subscribe(
       (Response: any) => {
         this.label = Response;
-        console.log(this.label)
+        console.log(this.label);
       })
   }
   addlabel(labels: any) {

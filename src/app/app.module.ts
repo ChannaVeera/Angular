@@ -33,6 +33,9 @@ import { ArchiveComponent } from './component/archive/archive.component';
 import { TrachComponent } from './component/trach/trach.component';
 import { TrachiconComponent } from './component/trachicon/trachicon.component';
 import { LabelNoteComponent } from './component/label-note/label-note.component';
+import { UnpincompComponent } from './component/unpincomp/unpincomp.component';
+import { PincompComponent } from './component/pincomp/pincomp.component';
+import { PinComponent } from './component/pin/pin.component';
 
 
 
@@ -56,7 +59,10 @@ import { LabelNoteComponent } from './component/label-note/label-note.component'
     ArchiveComponent,
     TrachComponent,
     TrachiconComponent,
-    LabelNoteComponent
+    LabelNoteComponent,
+    UnpincompComponent,
+    PincompComponent,
+    PinComponent
    
     
   ],

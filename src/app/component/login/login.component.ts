@@ -2,8 +2,9 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { HttpService } from 'src/app/service/http-service';
+
 import{Login} from 'src/app/models/login'
+import { Userservice } from 'src/app/service/userservice';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   email=new FormControl(this.login.emailId,[Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]);
   password=new FormControl(this.login.password,[Validators.required,Validators.minLength(8)])
   token: string;
-  constructor(private snackBar:MatSnackBar,private httpservice:HttpService,
+  constructor(private snackBar:MatSnackBar,private httpservice:Userservice ,
     public formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router) { }

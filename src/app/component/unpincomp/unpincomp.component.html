@@ -1,0 +1,29 @@
+<div fxLayout="row" fxFlex="100" class=side>
+    <div fxLayout="row" fxLayout="row wrap" fxFlex="80">
+      <div *ngFor="let note of notes">
+        <div *ngIf="note.pin==false">
+  
+          <mat-card [ngStyle]="{'background-color':note.color}" class="matcard2">
+            <form>
+              <div>
+                <app-pin [noteInfo]=note></app-pin>
+              </div>
+              <div class="notearea" (click)="onUpdate(note)">
+                <div>
+                  {{note.title}}
+                </div>
+                <br>
+                <div>
+                  {{note.description}}
+                </div>
+              </div>
+              <app-label-note [labelInfo]=note></app-label-note>
+              <div class=appicons>
+                <app-icon [noteInfo]=note></app-icon>
+              </div>
+            </form>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+  </div>

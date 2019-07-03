@@ -12,18 +12,21 @@
         </h2>
       </mat-card-subtitle>
       <div>
-        <mat-form-field appearance="outline" class="input">
+            <mat-form-field appearance="outline" class="input">
           <mat-label>Name</mat-label>
-          <input type="text" matInput [formControl]="name"   [(ngModel)]="user.name" placeholder="Enter your Name">
-          <mat-hint>Name</mat-hint>
+          <input type="text" matInput placeholder="Enter your Name" [formControl]="name" [(ngModel)]="user.name"
+            required>
+          <mat-error *ngIf="name.invalid"> {{nameValidation()}}</mat-error>
+          <mat-icon matSuffix>Name</mat-icon>
+          <mat-hint>Enter Name</mat-hint>
         </mat-form-field>
       </div>
       <div>
         <mat-form-field appearance="outline" class="input">
           <mat-label>Email</mat-label>
-          <mat-error *ngIf="email.invalid"> {{ emailValidation() }}</mat-error>
-          <input type="email" matInput placeholder="Enter your email" [formControl]="email"
-                      [(ngModel)]="user.emailId" required>
+          <input type="email" matInput placeholder="Enter your email" [formControl]="email" [(ngModel)]="user.emailId"
+            required>
+          <mat-error *ngIf="email.invalid"> {{emailValidation()}}</mat-error>
           <mat-icon matSuffix>email</mat-icon>
           <mat-hint>Email</mat-hint>
         </mat-form-field>
@@ -32,7 +35,9 @@
         <mat-form-field appearance="outline" class="input">
           <mat-label>mobile</mat-label>
           <span matPrefix> +91&nbsp;</span>
-          <input type="text" matInput placeholder="Enter your password"  [(ngModel)]="user.phoneNumber"  [formControl]="mobile">
+          <input type="text" matInput placeholder="Enter your password" [(ngModel)]="user.phoneNumber"
+            [formControl]="mobile">
+            <mat-error *ngIf="mobile.invalid"> {{phoneNumber()}}</mat-error>
           <mat-icon matSuffix>mode_edit</mat-icon>
           <mat-hint>mobile</mat-hint>
         </mat-form-field>
@@ -41,23 +46,16 @@
         <mat-form-field appearance="outline" class="input">
           <mat-label>Password</mat-label>
           <input type="password" matInput placeholder="Enter your password" [formControl]="password"
-          [(ngModel)]="user.password" [type]="!hide ? 'password' : 'text'" required>
+            [(ngModel)]="user.password" [type]="!hide ? 'password' : 'text'" required>
+          <mat-error *ngIf="password.invalid"> {{getErrorPassword()}}</mat-error>
           <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           <mat-hint>Password</mat-hint>
         </mat-form-field>
       </div>
-   <div>
-        <mat-form-field appearance="outline" class="input">
-          <mat-label>ConfirmPassword</mat-label>
-          <mat-error *ngIf="cpassword.invalid">{{getErrorcPassword()}}</mat-error>
-          <input type="password" matInput placeholder="Enter your password" [formControl]="cpassword"
-            [type]="!hide ? 'password' : 'text'" required>
-          <mat-icon matSuffix (click)="hide = !hide">{{!hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          <mat-hint>ConfirmPassword</mat-hint>
-        </mat-form-field>
-      </div>
+     
       <div>
-        <button mat-raised-button color="primary" style="margin-top: 30px" (click)="onRegister()" 
+        <button mat-raised-button color="primary" style="margin-top: 30px" (click)="onRegister()"
+        [disabled]="name.invalid || email.invalid || password.invalid"
           class="button">Register</button>
       </div>
     </mat-card>

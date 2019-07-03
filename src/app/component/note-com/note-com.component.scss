@@ -1,16 +1,16 @@
 .matcard2{
-    margin-top: 20%;
-    margin-left: 30%;
+    margin-top: 50px;
+    margin-left: -7px;
     width:225px;
 }
 .appicons{
-    margin-top: 20%;
+    margin-top: 10px;
 }
-.textarea1:empty:before{
+.textarea1:empty:before
+{
     content: attr(data-text);
     opacity: 0.5;
     font-size: 14px;
-    width:60%;
-    height:10%;
-    // @include margin-top(2px);
-    }
+    width:60px;
+    height:10px;
+}
