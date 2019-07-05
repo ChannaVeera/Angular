@@ -6,6 +6,7 @@ import { FormBuilder } from '@angular/forms';
 
 import { NoteupdateComponent } from '../noteupdate/noteupdate.component';
 import { DataService } from 'src/app/service/data.service';
+import { ViewService } from 'src/app/service/view-service';
 
 @Component({
   selector: 'app-note-com',
@@ -14,9 +15,16 @@ import { DataService } from 'src/app/service/data.service';
 })
 export class NoteComComponent implements OnInit {
   notes:[];
+  data1: any[];
+  wrap:string ="wrap";
+  direction:string="row";
+  view: any;
  
-  constructor(private snackbar:MatSnackBar,private noteService: Noteservice,private data: DataService,
-    private route:ActivatedRoute,private router:Router,private formBuilder:FormBuilder,
+  constructor(private snackbar:MatSnackBar, private viewservice: ViewService, private noteService: Noteservice,private data: DataService,
+    private route:ActivatedRoute,private router:Router,
+    
+    private formBuilder:FormBuilder,
+    
     public dialog: MatDialog) { }
 
     message:string;
@@ -26,7 +34,18 @@ export class NoteComComponent implements OnInit {
  
     ngOnInit() {
       this.data.currentMessage.subscribe(
-        message => {this.message = message,this.getallNotes()})
+        message => {this.message = message,this.getallNotes()});
+
+        this.viewservice.getView().subscribe(
+          (res) => {
+                      this.view = res;
+                      this.direction = this.view.data;
+                      
+                      console.log(this.direction);
+                       
+            });
+
+        
 
         
      
@@ -57,4 +76,10 @@ export class NoteComComponent implements OnInit {
           
         });
       }
+
+   
+
+
+
 }
+

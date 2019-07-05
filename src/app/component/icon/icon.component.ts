@@ -2,10 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Note } from 'src/app/models/note';
 import { MatSnackBar, MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import { DataService } from 'src/app/service/data.service';
 import { Labelservice } from 'src/app/service/labelservice';
 import { Noteservice } from 'src/app/service/noteservice';
+import { DateReminder } from 'src/app/models/date-reminder';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class IconComponent implements OnInit {
   toggle: boolean = true;
   message: string
   @Input() noteInfo: any;
+  dateReminder: DateReminder=new DateReminder();
+dateControl=new FormControl(this.dateReminder.reminder);
   constructor(private snackbar: MatSnackBar, private noteService: Noteservice,
     private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder,
     private labelservice: Labelservice, private dataService: DataService, private dialog: MatDialog) { }
@@ -136,11 +139,27 @@ export class IconComponent implements OnInit {
       }
     )
   } lables: []
-  // private open: boolean
-  // onLabel() {
-  //   console.log('onLabel check');
-  //   this.open = true
-  // }
+  datePicker(){
+   this.noteService.postRequest("reminder?id="+this.noteInfo.noteId,this.dateReminder).subscribe(
+    (Response:any)=>{
+      if(Response.statusCode===200)
+      {
+        console.log(Response)
+        this.snackbar.open(
+          "Reminder Successfull","",
+          {duration:2500}
+        )
+      }
+      else{
+       console.log(Response)
+       this.snackbar.open(
+         "Reminder UnSuccessfull","",
+         {duration:2500}
+       )
+      }
+    }
+  )
+}
 
   getalllabels() {
     this.labelservice.getRequest("getAll").subscribe(
@@ -154,7 +173,7 @@ export class IconComponent implements OnInit {
     this.noteService.putRequest("AddLabelToNote?labelId="+labels.labelId+"&noteId="+this.noteInfo.noteId,this.noteInfo).subscribe(
       (Response: any) => {
         if (Response.statusCode === 200) {
-          this.dataService.changeMessage('trash')
+          this.dataService.changeMessage('wrewera')
           console.log(Response);
           this.snackbar.open(
             "Note Added ", "undo",

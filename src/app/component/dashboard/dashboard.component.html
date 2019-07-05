@@ -40,9 +40,12 @@
     </div>
 
     <div>
-      <button style="margin-left: 10px ;padding-top: 3%" class="view" mat-icon-button>
-        <mat-icon matTooltip="Grid view">view_agenda
-        </mat-icon>
+      <button mat-icon-button class="iconbtn" *ngIf="list" (click)="changeView()" fxShow="true" fxHide.lt-sm="true">
+        <mat-icon class="icon">view_agenda</mat-icon>
+      </button>
+
+      <button mat-icon-button class="iconbtn" *ngIf="grid" (click)="changeView()" fxShow="true" fxHide.lt-sm="true">
+        <mat-icon class="icon">view_module</mat-icon>
       </button>
     </div>
 
@@ -123,10 +126,8 @@
           <button class="showlabel" mat-button>
 
             <mat-icon matPrefix>label outline</mat-icon>
-
             {{data.lableName}}
             <br>
-
           </button>
         </div>
         <button class="sidenav" mat-button (click)=openDialogLabel()>

@@ -1,31 +1,33 @@
-<div>
-   <app-pincomp></app-pincomp>
-</div>
-<div fxLayoutAlign="center center">
-   <div fxLayout="row">
-      <div fxLayout="row wrap" fxLayoutGap=20px>
-         <div *ngFor="let note of notes">
-            <div *ngIf="note.archive==false && note.trash==false && note.pin==false">
-               <mat-card [ngStyle]="{'background-color':note.color}" class="matcard2">
-                  <form>
-                     <app-pin [noteInfo]=note></app-pin>
-                     <div class="notearea" (click)="onUpdate(note)">
-                        <div>
-                           {{note.title}}
+
+   <div>
+      <app-pincomp></app-pincomp>
+   </div>
+
+         <div fxLayout="row" fxLayoutAlign="center center"   class="1">
+            <div fxLayout="row wrap"  fxLayout="{{direction}} wrap"    fxLayoutGap="30px" fxLayoutAlign="center center">
+            <div *ngFor="let note of notes">
+               <div *ngIf="note.archive==false && note.trash==false && note.pin==false" >
+                  <mat-card [ngStyle]="{'background-color':note.color}" class="matcard2" 
+                  [ngClass]=" direction =='row' ? 'matpad2':'matpad3' ">
+                   
+                     <form>
+                        <app-pin [noteInfo]=note></app-pin>
+                        <div class="notearea" (click)="onUpdate(note)">
+                           <div>
+                              {{note.title}}
+                           </div>
+                           <br>
+                           <div>
+                              {{note.description}}
+                           </div>
                         </div>
-                        <br>
-                        <div>
-                           {{note.description}}
+                        <app-label-note [labelInfo]=note></app-label-note>
+                        <div class=appicons fxLayoutAlign="center center">
+                           <app-icon [noteInfo]=note></app-icon>
                         </div>
-                     </div>
-                     <app-label-note [labelInfo]=note></app-label-note>
-                     <div class=appicons>
-                        <app-icon [noteInfo]=note></app-icon>
-                     </div>
-                  </form>
-               </mat-card>
+                     </form>
+                  </mat-card>
+               </div>
             </div>
          </div>
-      </div>
-   </div>
-</div>
+         </div>

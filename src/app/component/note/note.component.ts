@@ -24,9 +24,7 @@ title=new FormControl(this.note.title);
 
   ngOnInit() {
 
-      
-
-  }
+     }
   
   onOpen(){
     this.open=true;

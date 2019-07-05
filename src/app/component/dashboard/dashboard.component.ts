@@ -7,7 +7,9 @@ import { NoteupdateComponent } from '../noteupdate/noteupdate.component';
 import { EditlableComponent } from '../editlable/editlable.component';
 import { Labelservice } from 'src/app/service/labelservice';
 import { DataService } from 'src/app/service/data.service';
-
+import { BehaviorSubject } from 'rxjs';
+import { ViewService } from 'src/app/service/view-service';
+ 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -15,32 +17,44 @@ import { DataService } from 'src/app/service/data.service';
 })
 export class DashboardComponent implements OnInit {
   showFiller = false;
-  constructor(private snackbar: MatSnackBar, private labelService: Labelservice,private noteservice:Noteservice,
+  list: boolean = true;
+  grid: boolean = false;
+  private obtainNotes = new BehaviorSubject([]);
+  currentMessage = this.obtainNotes.asObservable();
+  constructor(private snackbar: MatSnackBar, private labelService: Labelservice, private noteservice: Noteservice,
     private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder,
-    public dialog: MatDialog, private dataservice:DataService) { }
+    public dialog: MatDialog, private dataservice: DataService, private viewservice: ViewService) { }
   appName: string;
-  open:boolean;
-  lables: []
-  search=new FormControl();
-  message:string;
-  
+  open: boolean;
+
+  search = new FormControl();
+  message: string;
+
   ngOnInit() {
     this.appName = "FundooNote";
     this.dataservice.currentMessage.subscribe(
-      message=>{;this.message=message,this. getallabels()   
+      message => {
+        ; this.message = message, this.getallabels()
       }
     )
   }
-  
-  onNotes()
-  {
-    this.appName="Note";
+  changeView() {
+    if (this.list) {
+      this.grid = true;
+      this.list = false;
+    }
+    else {
+      this.list = true;
+      this.grid = false;
+    }
+    this.viewservice.getView();
+  }
+  onNotes() {
+    this.appName = "Note";
     this.router.navigate(['dashboard'])
   }
   openDialogLabel(notes: any) {
-    console.log("yesz")
-    console.log("note", this.lables);
-    console.log(this.lables)
+
     const dialogRef = this.dialog.open(EditlableComponent, {
 
       height: '650px',
@@ -48,29 +62,29 @@ export class DashboardComponent implements OnInit {
 
     });
   }
-  account(){
-    this.open=true;
+  account() {
+    this.open = true;
   }
-  onArchive(){
-    this.appName="Archive"
+  onArchive() {
+    this.appName = "Archive"
     this.router.navigate(['dashboard/archive'])
 
   }
-  onTrash(){
-    this.appName="Trash"
+  onTrash() {
+    this.appName = "Trash"
     this.router.navigate(['dashboard/trash'])
   }
- data:[]
-  onsearch(){
+  data: []
+  onsearch(message: any) {
     console.log("on search")
-    this.noteservice.getRequest("searchTitle?title="+this.search.value).subscribe(
-    (Response:any)=>{
-    this.data=Response;
-    console.log(Response+"========>")
-    console.log(this.data)
+    this.noteservice.getRequest("serach?findString=" + message).subscribe(
+      (Response: any) => {
+        this.data = Response;
+        console.log(Response + "========>")
+        console.log(this.data)
 
 
-    }
+      }
     )
   }
   onnote() {
@@ -82,12 +96,12 @@ export class DashboardComponent implements OnInit {
     this.labelService.getRequest("getAll").subscribe(
       (Response: any) => {
         this.labelsDisplay = Response;
-        console.log('labelsDisplay dashboard ===================>',this.labelsDisplay)
+        console.log('labelsDisplay dashboard ===================>', this.labelsDisplay)
       }
 
     )
   }
 
 }
- 
+
 

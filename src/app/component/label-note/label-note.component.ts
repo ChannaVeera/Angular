@@ -12,73 +12,63 @@ import { Labelservice } from 'src/app/service/labelservice';
   styleUrls: ['./label-note.component.scss']
 })
 export class LabelNoteComponent implements OnInit {
-  @Input() labelInfo:any;
+  @Input() labelInfo: any;
   label = [];
-  message:string
-  constructor(private snackBar: MatSnackBar,private labelService:Labelservice,
-    private noteService:Noteservice,
+  message: string
+  constructor(private snackBar: MatSnackBar, private labelService: Labelservice,
+    private noteService: Noteservice,
     public formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private noteservice :Noteservice,
-    private dataService:DataService,
+    private noteservice: Noteservice,
+    private dataService: DataService,
     private router: Router) { }
 
 
 
   ngOnInit() {
-
     this.dataService.currentMessage.subscribe(
-      message=>{ console.log(this.labelInfo );this.message=message,this.getAllLabels()   
+      message => {
+        console.log(this.labelInfo); this.message = message, this.getAllLabels()
       }
     )
 
   }
 
-  getAllLabels(){
-    console.log(this.labelInfo)
-    console.log(this.labelInfo.noteId)
-    console.log(this.label)
-    console.log(this.labelInfo.labelId)
-    console.log(this.labelInfo)
-   
-    this.noteservice.getRequest('getlabel?noteId='+this.labelInfo.noteId).subscribe(
-      (Response:any)=>{
-        this.label=Response
-        console.log(Response)
+  getAllLabels() {
+    this.noteservice.getRequest('getlabel?noteId=' + this.labelInfo.noteId).subscribe(
+      (Response: any) => {
+        this.label = Response
+
       }
     )
 
   }
-  
-  onDelete(label1:any){
-    
-    console.log("notes")
-    console.log(label1)
+
+  onDelete(label1: any) {
+
     this.noteService.deleteRequest("RemoveLabelToNote?noteId=" + this.labelInfo.noteId + "&labelId=" + label1.labelId).subscribe(
-      
-     
-      (Response:any)=>{
-        
-        if(Response.statusCode===200){
+
+      (Response: any) => {
+        if (Response.statusCode === 200) {
           this.dataService.changeMessage("label Delete")
           console.log(Response);
           this.snackBar.open(
-            "Label Removed","",
-            {duration:2500}
+            "Label Removed", "",
+            { duration: 2500 }
           )
         }
-  
-        else{
+
+        else {
           console.log(Response);
           this.snackBar.open(
-            "Label Removed unSuccessfull","",
-            {duration:2500}
+            "Label Removed unSuccessfull", "",
+            { duration: 2500 }
           )
         }
       }
-    
+
     )
-  
+
   }
 
 }
