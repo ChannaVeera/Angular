@@ -75,18 +75,18 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['dashboard/trash'])
   }
   data: []
-  onsearch(message: any) {
-    console.log("on search")
-    this.noteservice.getRequest("serach?findString=" + message).subscribe(
-      (Response: any) => {
-        this.data = Response;
-        console.log(Response + "========>")
-        console.log(this.data)
+  // onsearch(message: any) {
+  //   console.log("on search")
+  //   this.noteservice.getRequest("serach?findString=" + message).subscribe(
+  //     (Response: any) => {
+  //       this.data = Response;
+  //       console.log(Response + "========>")
+  //       console.log(this.data)
 
 
-      }
-    )
-  }
+  //     }
+  //   )
+  // }
   onnote() {
     this.appName = "note"
   }
@@ -99,6 +99,15 @@ export class DashboardComponent implements OnInit {
         console.log('labelsDisplay dashboard ===================>', this.labelsDisplay)
       }
 
+    )
+  }
+
+  onsearch(){
+    console.log("search")
+    this.noteservice.getRequest("search?findString="+this.search.value).subscribe(
+      (response:any)=>{this.obtainNotes.next(response)
+      this.router.navigate(['dashboard/search'])
+    }
     )
   }
 

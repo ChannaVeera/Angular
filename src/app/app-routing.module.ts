@@ -12,6 +12,7 @@ import { from } from 'rxjs';
 import { NoteComponent } from './component/note/note.component';
 import { PinComponent } from './component/pin/pin.component';
 import { PincompComponent } from './component/pincomp/pincomp.component';
+import { SearchComponent } from './component/search/search.component'
 
 const routes: Routes = [
   {
@@ -53,6 +54,10 @@ const routes: Routes = [
         path:"archive",
         component:ArchiveComponent
       },
+      {
+        path:"search",
+        component:SearchComponent
+      }
     ]
   },
   {

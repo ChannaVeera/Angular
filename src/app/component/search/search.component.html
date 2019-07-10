@@ -1,3 +1,23 @@
-<p>
-  search works!
-</p>
+<div fxLayout="row" fxFlex=100 class=side>
+  <div fxLayout="row" fxFlex=80 fxLayout="row wrap">
+    <div *ngFor="let noteone of data">
+      <mat-card [ngStyle]="{'background-color':noteone.color}" class=search>
+        <form>
+          <div class="text">
+            <div>
+              {{noteone.title}}
+            </div>
+            <br>
+            <div>
+              {{noteone.description}}
+            </div>
+          </div>
+          <app-label-note [labelInfo]=noteone></app-label-note>
+          <div class=icons>
+            <app-icon [noteInfo]=noteone></app-icon>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>
